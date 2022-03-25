@@ -9,8 +9,16 @@
       <navbar />
       <!-- <tags-view v-if="needTagsView" /> -->
     </div>
-    <div class="bottom_wrap">
-      <sidebar class="sidebar-container" />
+    <div class="bottom_wrap"
+         :key="sidebar.opened">
+      <div class="mainSide">
+        <sidebar class="sidebar-container" />
+        <div @click="toggleSideBar"
+             class="control">
+          <i :class="sidebar.opened?'el-icon-arrow-left':'el-icon-arrow-right'"></i>
+        </div>
+      </div>
+
       <div :class="{ hasTagsView: needTagsView }"
            class="main-container">
         <app-main />
@@ -27,7 +35,7 @@
 import RightPanel from '@/components/RightPanel'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import variables from '@/assets/styles/variables.scss'
 
 export default {
@@ -45,11 +53,11 @@ export default {
     ...mapState({
       theme: (state) => state.settings.theme,
       sideTheme: (state) => state.settings.sideTheme,
-      sidebar: (state) => state.app.sidebar,
       device: (state) => state.app.device,
       needTagsView: (state) => state.settings.tagsView,
       fixedHeader: (state) => state.settings.fixedHeader,
     }),
+    ...mapGetters(['sidebar']),
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened,
@@ -65,6 +73,10 @@ export default {
   methods: {
     handleClickOutside() {
       this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    },
+    toggleSideBar() {
+      this.$store.dispatch('app/toggleSideBar')
+      // this.$router.go(0)
     },
   },
 }
@@ -109,9 +121,33 @@ export default {
 .bottom_wrap {
   display: flex;
   height: calc(100% - 80px);
+  width: 100%;
+  .mainSide {
+    position: relative;
+    .control {
+      position: absolute;
+      height: 55px;
+      width: 12px;
+      top: 40%;
+      background: #fff;
+      z-index: 10000;
+      right: -12px;
+      border-radius: 0 12px 12px 0;
+      // display: flex;
+      // justify-content: center;
+      // align-content: center;
+      line-height: 55px;
+      color: #ccc;
+      padding-right: 5px;
+      cursor: pointer;
+    }
+  }
+  .main-container {
+    flex-grow: 1 !important;
+  }
 }
 .hideSidebar .fixed-header {
-  width: 100%;
+  // width: 100%;
 }
 
 .mobile .fixed-header {

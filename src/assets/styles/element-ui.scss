@@ -90,3 +90,12 @@
   .el-submenu__icon-arrow {
   display: none;
 }
+
+.el-menu-item.is-active {
+  border-left: 3px solid #1D63CC;
+  background: #ECF4FF !important;
+  color: #1D63CC;
+}
+.el-submenu.is-active>.el-submenu__title>span {
+  color: #1D63CC !important;
+}

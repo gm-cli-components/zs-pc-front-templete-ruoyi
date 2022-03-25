@@ -1,13 +1,52 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container"
+    <!-- <hamburger id="hamburger-container"
                :is-active="sidebar.opened"
                class="hamburger-container left-menu"
-               @toggleClick="toggleSideBar" />
+               @toggleClick="toggleSideBar" /> -->
     <div class="center-menu">
-      河南省一体化疫情防控管理平台
+      <img class="titleLogo"
+           src="@/assets/logo/titleLogo.png" />
+      河南省一体化疫情防控管理平台 | <span class="fs-30 m-l-10">
+        核酸检测管理系统
+      </span>
     </div>
-    <div class="right-menu">
+    <div class="right-menu m-r-20">
+      <!-- <template v-if="device !== 'mobile'">
+
+        <screenfull id="screenfull"
+                    class="right-menu-item hover-effect" />
+
+        <el-tooltip content="布局大小"
+                    effect="dark"
+                    placement="bottom">
+          <size-select id="size-select"
+                       class="right-menu-item hover-effect" />
+        </el-tooltip>
+      </template> -->
+
+      <el-dropdown class="avatar-container right-menu-item hover-effect"
+                   trigger="click">
+        <div class="avatar-wrapper">
+          <i class="el-icon-s-custom" />
+          欢迎，{{user.name}}
+          <i class="el-icon-caret-bottom" />
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <router-link to="/user/profile">
+            <el-dropdown-item>个人中心</el-dropdown-item>
+          </router-link>
+          <!-- <el-dropdown-item @click.native="setting = true">
+            <span>布局设置</span>
+          </el-dropdown-item> -->
+          <el-dropdown-item divided
+                            @click.native="logout">
+            <span>退出登录</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
+    <!-- <div class="right-menu">
       <template v-if="device !== 'mobile'">
 
         <screenfull id="screenfull"
@@ -41,12 +80,12 @@
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import TopNav from '@/components/TopNav'
 import Hamburger from '@/components/Hamburger'
@@ -64,6 +103,7 @@ export default {
     Search,
   },
   computed: {
+    ...mapState(['user']),
     ...mapGetters(['sidebar', 'avatar', 'device']),
     setting: {
       get() {
@@ -119,15 +159,17 @@ export default {
     font-family: Source Han Sans CN;
     font-weight: bold;
     color: #f6f5ff;
-    flex: 2;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-  }
-
-  .left-menu,
-  .right-menu {
-    flex: 1;
+    .titleLogo {
+      width: 34px;
+      margin: -10px 20px 0;
+      // height: 34px;
+    }
+    .fs-30 {
+      font-weight: normal;
+    }
   }
 
   .hamburger-container {
@@ -162,52 +204,56 @@ export default {
     line-height: 50px;
     display: flex;
     justify-content: right;
+    align-items: flex-end;
 
     &:focus {
       outline: none;
     }
-
     .right-menu-item {
-      display: inline-block;
-      padding: 0 8px;
-      height: 100%;
-      font-size: 18px;
+      font-size: 16px;
       color: #fff;
-      vertical-align: text-bottom;
-
-      &.hover-effect {
-        cursor: pointer;
-        transition: background 0.3s;
-
-        &:hover {
-          background: rgba(0, 0, 0, 0.025);
-        }
-      }
     }
+    // .right-menu-item {
+    //   display: inline-block;
+    //   // padding: 0 8px;
+    //   height: 100%;
+    //   font-size: 18px;
+    //   color: #fff;
+    //   // vertical-align: text-bottom;
 
-    .avatar-container {
-      margin-right: 30px;
+    //   &.hover-effect {
+    //     cursor: pointer;
+    //     transition: background 0.3s;
 
-      .avatar-wrapper {
-        margin-top: 5px;
-        position: relative;
+    //     &:hover {
+    //       background: rgba(0, 0, 0, 0.025);
+    //     }
+    //   }
+    // }
 
-        .user-avatar {
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
+    // .avatar-container {
+    //   margin-right: 30px;
 
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
-        }
-      }
-    }
+    //   .avatar-wrapper {
+    //     margin-top: 5px;
+    //     position: relative;
+
+    //     .user-avatar {
+    //       cursor: pointer;
+    //       width: 40px;
+    //       height: 40px;
+    //       border-radius: 10px;
+    //     }
+
+    //     .el-icon-caret-bottom {
+    //       cursor: pointer;
+    //       position: absolute;
+    //       right: -20px;
+    //       top: 25px;
+    //       font-size: 12px;
+    //     }
+    //   }
+    // }
   }
 }
 </style>
