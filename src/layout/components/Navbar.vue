@@ -7,7 +7,9 @@
     <div class="center-menu">
       <img class="titleLogo"
            src="@/assets/logo/titleLogo.png" />
-      河南省一体化疫情防控管理平台 | <span class="fs-30 m-l-10">
+      河南省一体化疫情防控管理平台 <span class="line">
+        |
+      </span> <span class="fs-26 m-l-10">
         核酸检测管理系统
       </span>
     </div>
@@ -155,13 +157,17 @@ export default {
   align-items: center;
 
   .center-menu {
-    font-size: 34px;
+    font-size: 30px;
     font-family: Source Han Sans CN;
-    font-weight: bold;
+    font-weight: 500;
     color: #f6f5ff;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    .line {
+      font-weight: 200;
+      margin-left: 16px;
+    }
     .titleLogo {
       width: 34px;
       margin: -10px 20px 0;
@@ -204,7 +210,7 @@ export default {
     line-height: 50px;
     display: flex;
     justify-content: right;
-    align-items: flex-end;
+    align-items: center;
 
     &:focus {
       outline: none;
