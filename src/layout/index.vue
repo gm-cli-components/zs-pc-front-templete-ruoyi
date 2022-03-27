@@ -1,33 +1,37 @@
 <template>
-  <div :class="classObj"
-       class="app-wrapper"
-       :style="{ '--current-color': theme }">
-    <div v-if="device === 'mobile' && sidebar.opened"
-         class="drawer-bg"
-         @click="handleClickOutside" />
+  <div
+    :class="classObj"
+    class="app-wrapper"
+    :style="{ '--current-color': theme }"
+  >
+    <div
+      v-if="device === 'mobile' && sidebar.opened"
+      class="drawer-bg"
+      @click="handleClickOutside"
+    />
     <div :class="{ 'fixed-header': fixedHeader }">
       <navbar />
       <!-- <tags-view v-if="needTagsView" /> -->
     </div>
-    <div class="bottom_wrap"
-         :key="sidebar.opened">
+    <div class="bottom_wrap" :key="sidebar.opened">
       <div class="mainSide">
         <sidebar class="sidebar-container" />
-        <div @click="toggleSideBar"
-             class="control">
-          <i :class="sidebar.opened?'el-icon-arrow-left':'el-icon-arrow-right'"></i>
+        <div @click="toggleSideBar" class="control">
+          <i
+            :class="
+              sidebar.opened ? 'el-icon-arrow-left' : 'el-icon-arrow-right'
+            "
+          ></i>
         </div>
       </div>
 
-      <div :class="{ hasTagsView: needTagsView }"
-           class="main-container">
+      <div :class="{ hasTagsView: needTagsView }" class="main-container">
         <app-main />
         <right-panel>
           <settings />
         </right-panel>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -63,7 +67,7 @@ export default {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile',
+        // mobile: this.device === 'mobile',
       }
     },
     variables() {
@@ -110,7 +114,7 @@ export default {
 }
 
 .fixed-header {
-  position: fixed;
+  // position: fixed;
   top: 0;
   right: 0;
   z-index: 9;
@@ -130,7 +134,7 @@ export default {
       width: 12px;
       top: 40%;
       background: #fff;
-      z-index: 10000;
+      z-index: 98;
       right: -12px;
       border-radius: 0 12px 12px 0;
       // display: flex;
