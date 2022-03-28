@@ -5,13 +5,9 @@
                class="hamburger-container left-menu"
                @toggleClick="toggleSideBar" /> -->
     <div class="center-menu">
-      <img class="titleLogo"
-           src="@/assets/logo/titleLogo.png" />
-      河南省一体化疫情防控管理平台 <span class="line">
-        |
-      </span> <span class="fs-26 m-l-10">
-        核酸检测管理系统
-      </span>
+      <img class="titleLogo" src="@/assets/logo/titleLogo.png" />
+      河南省一体化疫情防控管理平台 <span class="line"> | </span>
+      <span class="fs-26 m-l-10"> 核酸检测管理系统 </span>
     </div>
     <div class="right-menu m-r-20">
       <!-- <template v-if="device !== 'mobile'">
@@ -27,11 +23,13 @@
         </el-tooltip>
       </template> -->
 
-      <el-dropdown class="avatar-container right-menu-item hover-effect"
-                   trigger="click">
+      <el-dropdown
+        class="avatar-container right-menu-item hover-effect"
+        trigger="click"
+      >
         <div class="avatar-wrapper">
           <i class="el-icon-s-custom" />
-          欢迎，{{user.name}}
+          欢迎，{{ user.name }}
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -41,8 +39,7 @@
           <!-- <el-dropdown-item @click.native="setting = true">
             <span>布局设置</span>
           </el-dropdown-item> -->
-          <el-dropdown-item divided
-                            @click.native="logout">
+          <el-dropdown-item divided @click.native="logout">
             <span>退出登录</span>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -218,6 +215,7 @@ export default {
     .right-menu-item {
       font-size: 16px;
       color: #fff;
+      cursor: pointer;
     }
     // .right-menu-item {
     //   display: inline-block;
