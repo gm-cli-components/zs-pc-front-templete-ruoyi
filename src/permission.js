@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2022-03-27 16:10:58
+ * @LastEditTime: 2022-03-28 09:49:37
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \zs-pc-front-templete\src\permission.js
+ */
 import router from "./router";
 import store from "./store";
 import { Message } from "element-ui";
@@ -15,7 +23,7 @@ router.beforeEach((to, from, next) => {
     to.meta.title && store.dispatch("settings/setTitle", to.meta.title);
     /* has token*/
     if (to.path === "/login") {
-      next({ path: "/" });
+      next();
       NProgress.done();
     } else {
       if (store.getters.roles.length === 0) {
@@ -33,7 +41,10 @@ router.beforeEach((to, from, next) => {
             store.dispatch("LogOut").then(() => {
               Message.error(err);
               next({ path: "/" });
-            });
+            }).catch(error => {
+              next(`/login`)
+              NProgress.done();
+            })
           });
       } else {
         next();
