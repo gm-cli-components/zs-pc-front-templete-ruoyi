@@ -35,6 +35,7 @@ module.exports = {
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         target: `http://localhost:8080`,
+        // target: `https://console-mock.apipost.cn/app/mock/project/21cc286d-d78c-4d5b-ced7-4a512bff7e62`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

@@ -1,3 +1,12 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-27 16:10:58
+ * @LastEditTime: 2022-03-28 11:25:43
+ * @LastEditors: your name
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \zs-pc-front-templete\README.md
+-->
+
 ## 开发
 
 ```bash
@@ -23,3 +32,7 @@ npm run build:stage
 # 构建生产环境
 npm run build:prod
 ```
+
+## 依赖
+
+本地安装 ApiPost, 登陆邮箱发给gaomeng添加权限，用于前端mock数据。
